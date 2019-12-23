@@ -1,0 +1,9 @@
+.git
+.vscode
+.idea
+Dockerfile
+docker-compose.*
+.DS_Store
+.gitignore
+env.*
+*.egg-info

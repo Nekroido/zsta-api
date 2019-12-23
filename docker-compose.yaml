@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  api-host:
+    build: .
+    ports:
+      - "6543:6543"
+    volumes:
+      - ./api:/usr/src/app/api

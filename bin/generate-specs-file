@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+
+# TODO: Create openapi.yaml file generator based on routes and models
+print("Doing nothing for now")

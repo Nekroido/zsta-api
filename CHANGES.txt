@@ -1,0 +1,10 @@
+0.0.1
+---
+
+-  Added inherited /calculate endpoint
+
+
+0.0.0
+---
+
+-  Initial version

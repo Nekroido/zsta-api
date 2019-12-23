@@ -1,0 +1,82 @@
+  openapi: 3.0.0
+  info:
+    title: Sample API
+    version: 0.0.1
+  tags:
+    - name: "calculate"
+      description: "Perform simple mathematical calculation."
+  paths:
+    /api/calculate:
+      post:
+        description: "Performs simple mathematical calculation."
+        tags:
+          - "calculate"
+        requestBody:
+          required: true
+          description: Expression to calculate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculateRequest'
+        responses:
+          '200':
+            description: Calculation result
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/CalculateResponse'
+          '400':
+            $ref: '#/components/responses/BadRequest'
+
+  components:
+    schemas:
+      CalculateRequest:
+        type: object
+        required:
+          - expression
+        properties:
+          expression:
+            type: string
+            minLength: 3
+            maxLength: 128
+            example: '3 + 2'
+
+      CalculateResponse:
+        type: object
+        required:
+          - result
+        properties:
+          result:
+            type: number
+            maxLength: 256
+            example: 5.0
+
+      Error:
+        type: object
+        required:
+          - message
+        properties:
+          field:
+            type: string
+          message:
+            type: string
+          exception:
+            type: string
+
+      ErrorResponse:
+        type: object
+        required:
+          - errors
+        properties:
+          errors:
+            type: array
+            items:
+              $ref: "#/components/schemas/Error"
+
+    responses:
+      BadRequest:
+        description: OpenAPI request/response validation failed
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ErrorResponse"
